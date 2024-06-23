@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1719164891485" clover="3.2.0">
-  <project timestamp="1719164891485" name="All files">
+<coverage generated="1719165091466" clover="3.2.0">
+  <project timestamp="1719165091466" name="All files">
     <metrics statements="22" coveredstatements="20" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="2" elements="27" coveredelements="24" complexity="0" loc="22" ncloc="22" packages="1" files="1" classes="1"/>
     <file name="route.entity.ts" path="/Users/dev/Desktop/www/typescript-clean-arch/src/route.entity.ts">
       <metrics statements="22" coveredstatements="20" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="2"/>
