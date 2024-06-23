@@ -1,4 +1,6 @@
-import { LatLng, Route, RouteProps } from "./route.entity";
+import { LatLng } from "./route.entity";
+import { Route } from "./route.entity";
+import { RouteProps } from "./route.entity";
 
 describe("Route tests", () => {
   test("Constructor", () => {
@@ -9,6 +11,7 @@ describe("Route tests", () => {
     };
 
     let route = new Route(routeProps);
+
     expect(route.props).toStrictEqual({
       ...routeProps,
       points: [],
@@ -16,6 +19,8 @@ describe("Route tests", () => {
 
     routeProps.points = [{ lat: 10, lng: 11 }];
     route = new Route(routeProps); // Calling again to resign the values.
+
+    expect(route.id).toBeDefined();
     expect(route.props).toStrictEqual({
       ...routeProps,
       points: [{ lat: 10, lng: 11 }],
@@ -31,6 +36,7 @@ describe("Route tests", () => {
 
     const route = new Route(routeProps);
     route.updateTitle("Minha nova rota");
+
     expect(route.title).toBe("Minha nova rota");
   });
 
@@ -48,5 +54,18 @@ describe("Route tests", () => {
 
     expect(route.startPosition).toBe(startPosition);
     expect(route.endPosition).toBe(endPosition);
+  });
+
+  test("updatePoints method", () => {
+    const routeProps: RouteProps = {
+      title: "Minha rota",
+      startPosition: { lat: 0, lng: 1 },
+      endPosition: { lat: 2, lng: 3 },
+    };
+
+    const route = new Route(routeProps);
+    const points: LatLng[] = [{ lat: 10, lng: 30 }];
+    route.updatePoints(points);
+    expect(route.points).toHaveLength(1);
   });
 });

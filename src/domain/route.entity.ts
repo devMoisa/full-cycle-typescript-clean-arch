@@ -8,8 +8,10 @@ export type RouteProps = {
 };
 
 export class Route {
+  public readonly id: string;
   public props: Required<RouteProps>;
-  constructor(props: RouteProps) {
+  constructor(props: RouteProps, id?: string) {
+    this.id = id || crypto.randomUUID();
     this.props = {
       ...props,
       points: props.points || [],
@@ -17,15 +19,16 @@ export class Route {
   }
 
   updateTitle(title: string) {
-    this.title = title; // Using the setter \/
-    //Aqui neste método, poderiamos implementar regras de negócios como...
-    //Transformar para maiusculo.
-    // Aplicar validações etc...
+    this.title = title;
   }
 
   updatePosition(startPosition: LatLng, endPosition: LatLng) {
     this.startPosition = startPosition;
     this.endPosition = endPosition;
+  }
+
+  updatePoints(points: LatLng[]) {
+    this.points = points;
   }
 
   public get title() {
@@ -50,5 +53,20 @@ export class Route {
 
   private set endPosition(value: LatLng) {
     this.props.endPosition = value;
+  }
+
+  public get points() {
+    return this.props.points;
+  }
+
+  private set points(value: LatLng[]) {
+    this.props.points = value;
+  }
+
+  toJSON() {
+    return {
+      id: this.id,
+      ...this.props,
+    };
   }
 }
